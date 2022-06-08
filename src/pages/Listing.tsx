@@ -14,6 +14,7 @@ function Listing() {
   const [listing, setListing] = useState<DocumentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [shareLinkCopied, setShareLinkCopied] = useState(false);
+  const [sliderActive, setSliderActive] = useState(false);
 
   const params = useParams();
   const auth = getAuth();
@@ -31,6 +32,10 @@ function Listing() {
 
     fetchListing();
   }, [params.listingId]);
+
+  const onSliderClick = () => {
+    setSliderActive(!sliderActive);
+  };
 
   if (loading) {
     return <Spinner />;
@@ -53,9 +58,12 @@ function Listing() {
             <div
               style={{
                 background: `url(${listing.imgUrls[index]}) center no-repeat`,
-                backgroundSize: "cover",
+                backgroundSize: sliderActive ? "contain" : "cover",
               }}
-              className="swiperSlideDiv"
+              onClick={onSliderClick}
+              className={
+                sliderActive ? "swiperSlideDivActive" : "swiperSlideDiv"
+              }
             ></div>
           </SwiperSlide>
         ))}
