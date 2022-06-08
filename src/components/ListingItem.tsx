@@ -51,8 +51,8 @@ function ListingItem({
             <img src={bathtubIcon} alt="bath" />
             <p className="categoryListingInfoText">
               {listing.bathrooms > 1
-                ? `${listing.bathrooms} Bedrooms`
-                : "1 Bedroom"}
+                ? `${listing.bathrooms} Bathrooms`
+                : "1 Bathroom"}
             </p>
           </div>
         </div>
